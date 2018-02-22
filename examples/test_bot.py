@@ -36,15 +36,15 @@ def person(person):
 def main():
     ''' set up config and start the bot
     '''
-    config = {
-        ('launch', launch),
-        ('AMAZON.StopIntent', quit),
-        ('AMAZON.NoIntent', no),
-        ('AMAZON.YesIntent', yes),
-        ('PersonIntent', person),
-    }
+    config = [
+        ["launch", launch],
+        ["AMAZON.StopIntent", quit],
+        ["AMAZON.NoIntent", no],
+        ["AMAZON.YesIntent", yes],
+        ["PersonIntent", person],
+    ]
     bot = AlexaBot(config)
     bot.start()
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='alexa_bot',
-    version='0.2',
+    version='0.3',
     description='The Simple Alexa Bot Library',
     url='https://github.com/computationaljournalism/columbia2018/library/alexa_bot',
     author='Michael Young',

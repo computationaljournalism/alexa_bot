@@ -9,15 +9,17 @@ class AlexaBot(object):
     '''
 
     def __init__(self, config):
-        # set up the app
+        # set up the Flask app
         self.app = Flask(__name__)
         self.ask = Ask(self.app, '/')
 
         # load config
-        for intent_name, func in config:
-            # the config is a list of tuples with:
-            # intent name
-            # intent method to call 
+        # the config is a list of lists (keeping w/ what the students know from Eliza):
+        # 0: intent name
+        # 1: intent method to call 
+        for intent_config in config:
+            intent_name = intent_config[0]
+            func = intent_config[1]
 
             if intent_name == 'launch':
                 # special case the 'launch' method
@@ -25,8 +27,9 @@ class AlexaBot(object):
             else:
                 func = self.ask.intent(intent_name)(func)
 
-    def start(self, debug=True):
+    def start(self, debug=False):
         ''' start it up
+            Note: debug=True does not play well with jupyter notebook
         '''
         # start it up
         self.app.run(debug=debug)
