@@ -16,13 +16,16 @@ class AlexaBot(object):
         # load config
         # the config is a list of lists (keeping w/ what the students know from Eliza):
         # 0: intent name
-        # 1: intent method to call 
+        # 1: intent method to call
         for intent_config in config:
             intent_name = intent_config[0]
             func = intent_config[1]
 
             if intent_name == 'launch':
                 # special case the 'launch' method
+                func = self.ask.launch(func)
+            elif intent_name.lower().startwith('on_playback'):
+                # special case 'on_playback'
                 func = self.ask.launch(func)
             else:
                 func = self.ask.intent(intent_name)(func)
