@@ -24,9 +24,11 @@ class AlexaBot(object):
             if intent_name == 'launch':
                 # special case the 'launch' method
                 func = self.ask.launch(func)
-            elif intent_name.lower().startwith('on_playback'):
+            elif intent_name.lower().startswith('on_playback'):
                 # special case 'on_playback'
-                func = self.ask.launch(func)
+                # get the method name from the string
+                method = getattr(self.ask, intent_name)
+                func = method(func)
             else:
                 func = self.ask.intent(intent_name)(func)
 
